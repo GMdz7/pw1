@@ -1,0 +1,380 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Playfair Display", serif;
+}
+
+/* Deixando o fundo pretão e escondendo a rolagem pra virar um slide memo */
+body {
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+/* Menu lá no topo. Deixei fixo e centralizado na raça com o translateX */
+header {
+  position: fixed;
+  width: 80vw;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: 1fr 600px;
+  gap: 100px;
+  z-index: 10;
+  padding-top: 20px;
+
+  & img {
+    width: 250px;
+  }
+
+  & nav {
+    & ul {
+      display: grid;
+      grid-template-columns: repeat(3, 200px);
+      text-align: center;
+    }
+  }
+}
+
+/* Aqui é o fundo com degrade. Botei relative pros itens não fugirem */
+section {
+  background-image: radial-gradient(#cfcfcf, #000000);
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  & .list {
+    width: 80vw;
+    height: 100%;
+    margin: auto;
+    position: relative;
+
+    /* Cada 'página' do carro. Tá uma em cima da outra por causa do absolute */
+    & .item {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+
+      /* A div que segura a foto do carro */
+      & .car-img {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%); /* Deixa o carro centralizado na linha */
+        width: 60%;
+        z-index: 2;
+
+        & img {
+          width: 100%;
+          transform: rotate(-22deg); 
+          filter: drop-shadow(30px 50px 30px rgba(0, 0, 0, 0.6));
+          /* Botei a transição aqui pra quando mudar de classe ele girar */
+          transition: 0.5s; 
+          transition-delay: 0.3s;
+        }
+      }
+
+      /* Onde fica o nome do carro e o botão */
+      & .content {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  width: 500px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 15;
+}
+
+        /* Título e a marca do carro alhiado na linha branca */
+        & .car-information {
+          position: absolute;
+          bottom: -8px; 
+          right: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+
+          & span {
+            font-size: 1.1rem;
+            font-family: "Playfair Display", serif;
+            color: #fff;
+            margin-bottom: 2px;
+          }
+
+          & h2 {
+            font-size: 7.6vw;
+            font-family: "League Gothic", sans-serif;
+            font-weight: 900;
+            line-height: 0.8;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin: 0;
+          }
+        }
+
+        /* O texto explicativo do carro */
+        & .description {
+          position: absolute;
+          top: 30px;
+          right: 0;
+          color: #fff;
+          font-size: 14px;
+          max-width: 400px;
+          text-align: right;
+          line-height: 1.6;
+        }
+
+        /* Botão Saiba Mais com aquele neon */
+        & .information {
+          position: absolute;
+          top: 150px;
+          right: 0;
+          padding: 15px 40px;
+          border-radius: 30px;
+          border: none;
+          background-color: #beff1b;
+          color: #000;
+          font-weight: bold;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: 0.3s;
+          box-shadow: 0 10px 20px rgba(190, 255, 27, 0.2);
+
+          &:hover {
+            background-color: #fff;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+
+    /* Essa é a linha branca que corta o meio da tela */
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      border-top: 4px solid rgba(255, 255, 255, 0.9);
+      z-index: 1;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  /* As setinhas de passar pro lado. Usei invert pra elas ficarem neon */
+  & .arrows {
+    width: 90vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+    pointer-events: none;
+
+    & button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: 0.4s;
+
+      & img {
+        width: 20px;
+        filter: invert(1);
+      }
+
+      &:nth-child(1) img {
+        transform: scaleX(-1); /* Gira a seta pra esquerda */
+      }
+
+      &:hover {
+        background-color: #beff1b;
+        border-color: #beff1b;
+        & img {
+          filter: invert(0);
+        }
+      }
+    }
+  }
+
+  /* O número 01 e as barrinhas lá embaixo */
+  & .indicators {
+    position: absolute;
+    bottom: 50px;
+    left: 5vw;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & .number {
+      font-size: 6em;
+      font-weight: 900;
+      line-height: 1;
+      font-family: "League Gothic", sans-serif;
+    }
+
+    & ul {
+      display: flex;
+      gap: 10px;
+
+      & li {
+        width: 40px;
+        height: 5px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+      }
+
+      & .active {
+        background-color: #beff1b;
+        width: 60px;
+      }
+    }
+  }
+
+
+/* Lógica de animação quando eu mudo o slide */
+section {
+  & .list {
+    & .item {
+      transform: translateX(100vw); /* Começa lá na direita fora da tela */
+      transition: 0.5s;
+      opacity: 0;
+
+      & .content {
+        & .car-information,
+        h2,
+        .description,
+        .information {
+          transform: translateX(200px); /* Texto começa empurrado pra direita */
+          transition: 0.7s;
+          transition-delay: 0.3s;
+          opacity: 0;
+        }
+
+        & h2 { transition-delay: 0.5s; }
+        & .description { transition-delay: 0.7s; }
+        & .information { transition-delay: 0.9s; }
+      }
+
+      /* ESTADO INICIAL DO CARRO: botei reto (0deg) pra ele girar ao entrar */
+      & .car-img {
+        & img {
+          transform: rotate(0deg); 
+        }
+      }
+    }
+
+    /* QUANDO O ITEM FICA ATIVO: tudo volta pro lugar e o carro inclina */
+    & .active {
+      transform: translateX(0);
+      transition: 0.5s;
+      opacity: 1;
+
+      & .car-img {
+        & img {
+          transform: rotate(-20deg); 
+        }
+      }
+      & .content {
+        & .car-information,
+        h2,
+        .description,
+        .information {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 900px) {
+    header {
+        width: 100vw !important;
+        left: 0 !important;
+        transform: none !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        padding: 10px !important;
+        position: absolute !important;
+    }
+
+    header img {
+        width: 120px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    header nav ul {
+        grid-template-columns: repeat(3, 1fr) !important;
+        width: 100% !important;
+        gap: 0 !important;
+    }
+
+    header nav ul li {
+        font-size: 10px !important;
+        padding: 5px !important;
+    }
+
+    section .list .item .car-img {
+        width: 90% !important;
+        top: 40% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    section .list .item .content {
+        width: 100% !important;
+        right: 0 !important;
+        top: auto !important;
+        bottom: 8% !important;
+        height: auto !important;
+        align-items: center !important;
+        padding: 0 20px !important;
+    }
+
+    section .list .item .content .car-information {
+        position: relative !important;
+        align-items: center !important;
+    }
+
+    section .list .item .content .car-information h2 {
+        font-size: 14vw !important;
+    }
+
+    section .list .item .content .description {
+        position: relative !important;
+        top: 0 !important;
+        text-align: center !important;
+        font-size: 13px !important;
+        margin-top: 10px !important;
+    }
+
+    section .list .item .content .information {
+        position: relative !important;
+        top: 0 !important;
+        margin: 20px auto 0 !important;
+    }
+
+    section .arrows {
+        width: 100% !important;
+        padding: 0 15px !important;
+    }
+}
