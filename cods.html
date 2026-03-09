@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicação Técnica - Chuva Dinâmica</title>
+    <link rel="stylesheet" href="cods.css">
+</head>
+<body>
+    <div id="dynamic-grid-background">
+        <canvas id="grid-canvas"></canvas>
+    </div>
+
+    <div class="content-container">
+        <a href="index.html" class="btn-voltar">← Voltar ao Site</a>
+        
+        <h1>Bastidores do Código</h1>
+
+        <div class="explicacao-scroll">
+            <section>
+                <h2>Análise das Tags (HTML)</h2>
+                <p><strong>Header:</strong> Tag semântica que define o topo do site, agrupando logo e navegação.</p>
+                <p><strong>Nav e UL/LI:</strong> Organizam os links em lista, essencial para criar o menu em grid.</p>
+                <p><strong>Section:</strong> Isola o carrossel do restante do site, criando um bloco independente.</p>
+                <p><strong>Div e Class:</strong> As divs agrupam elementos, enquanto as classes funcionam como etiquetas para o CSS e JS.</p>
+            </section>
+
+            <section>
+                <h2>Engenharia de Estilos (CSS)</h2>
+                <p><strong>Display Grid:</strong> Divide o cabeçalho em colunas exatas, mantendo o alinhamento.</p>
+                <p><strong>Position Absolute:</strong> Permite que os itens do slider fiquem empilhados um sobre o outro.</p>
+                <p><strong>Z-Index:</strong> Controla a profundidade; o item ativo sempre ganha o maior valor para aparecer na frente.</p>
+                <p><strong>Transition-Delay:</strong> Cria o efeito cascata, onde título e descrição entram em tempos diferentes.</p>
+            </section>
+
+            <section>
+                <h2>Lógica de Programação (JS)</h2>
+                <p><strong>Variável active:</strong> Rastreia qual carro está visível (0, 1 ou 2).</p>
+                <p><strong>ClassList:</strong> O JavaScript remove a classe 'active' do antigo e adiciona no novo para disparar a animação.</p>
+                <p><strong>Operador Ternário:</strong> Lógica que faz o slider voltar ao início automaticamente ao chegar no fim.</p>
+                <p><strong>DOM:</strong> Permite que o JS altere o HTML em tempo real.</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="cods.js"></script>
+</body>
+</html>
